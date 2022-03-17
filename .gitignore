@@ -1,4 +1,7 @@
-.idea
 .config
+composer.json
+composer.lock
+/.idea
 /temp
 /test
+/vendor
