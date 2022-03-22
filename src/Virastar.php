@@ -187,10 +187,10 @@ class Virastar
 
         $defaults = $this->defaults;
 
-        if (is_array($defaults) && $defaults) {
+        if (!empty($parsed_args))
             return array_merge($defaults, $parsed_args);
-        }
-        return $parsed_args;
+
+        return $defaults;
     }
 
     /**
@@ -211,11 +211,11 @@ class Virastar
     /**
      * Cleanup Text
      *
-     * @param string $text
+     * @param $text
      * @return array|string|string[]|null
      * @throws Exception
      */
-    public function cleanup(string $text)
+    public function cleanup($text)
     {
         if (!is_string($text))
             throw new Exception('Expected a String, but received ' . gettype($text));
@@ -377,8 +377,8 @@ class Virastar
         // word tokenizer
         $text = preg_replace_callback('/(^|\s+)([[({"\'“«]?)(\S+)([\])}"\'”»]?)(?=($|\s+))/', function ($matches) use ($options) {
             $matched = $matches[0] ?? '';
-            $before = $matches[1] ?? '';
-            $leading = $matches[2] ?? '';
+            // $before = $matches[1] ?? '';
+            // $leading = $matches[2] ?? '';
             $word = $matches[3] ?? '';
             $trailing = $matches[4] ?? '';
             $after = $matches[5] ?? '';
@@ -515,7 +515,7 @@ class Virastar
         // bringing back nbsp
         if ($options["preserve_nbsp"]) {
             $nbsps = $nbsps ?? [];
-            $text = preg_replace_callback('/[ ]?__NBSPS__PRESERVER__[ ]?/', function ($matched) use ($nbsps) {
+            $text = preg_replace_callback('/[ ]?__NBSPS__PRESERVER__[ ]?/', function () use ($nbsps) {
                 return array_shift($nbsps);
             }, $text);
         }
@@ -524,12 +524,12 @@ class Virastar
         if ($options["preserve_URIs"]) {
             $md_links = $md_links ?? [];
             // no padding!
-            $text = preg_replace_callback('/__MD_LINK__PRESERVER__/', function ($matched) use ($md_links) {
+            $text = preg_replace_callback('/__MD_LINK__PRESERVER__/', function () use ($md_links) {
                 return array_shift($md_links);
             }, $text);
 
             $uris = $uris ?? [];
-            $text = preg_replace_callback('/[ ]?__URI__PRESERVER__[ ]?/', function ($matched) use ($uris) {
+            $text = preg_replace_callback('/[ ]?__URI__PRESERVER__[ ]?/', function () use ($uris) {
                 return array_shift($uris);
             }, $text);
         }
@@ -537,7 +537,7 @@ class Virastar
         // bringing back braces
         if ($options["preserve_braces"]) {
             $braces = $braces ?? [];
-            $text = preg_replace_callback('/[ ]?__BRACES__PRESERVER__[ ]?/', function ($matched) use ($braces) {
+            $text = preg_replace_callback('/[ ]?__BRACES__PRESERVER__[ ]?/', function () use ($braces) {
                 return array_shift($braces);
             }, $text);
         }
@@ -545,7 +545,7 @@ class Virastar
         // bringing back brackets
         if ($options["preserve_brackets"]) {
             $brackets = $brackets ?? [];
-            $text = preg_replace_callback('/[ ]?__BRACKETS__PRESERVER__[ ]?/', function ($matched) use ($brackets) {
+            $text = preg_replace_callback('/[ ]?__BRACKETS__PRESERVER__[ ]?/', function () use ($brackets) {
                 return array_shift($brackets);
             }, $text);
         }
@@ -553,7 +553,7 @@ class Virastar
         // bringing back HTML comments
         if ($options["preserve_comments"]) {
             $comments = $comments ?? [];
-            $text = preg_replace_callback('/[ ]?__COMMENT__PRESERVER__[ ]?/', function ($matched) use ($comments) {
+            $text = preg_replace_callback('/[ ]?__COMMENT__PRESERVER__[ ]?/', function () use ($comments) {
                 return array_shift($comments);
             }, $text);
         }
@@ -561,7 +561,7 @@ class Virastar
         // bringing back HTML tags
         if ($options["preserve_HTML"]) {
             $html = $html ?? [];
-            $text = preg_replace_callback('/[ ]?__HTML__PRESERVER__[ ]?/', function ($matched) use ($html) {
+            $text = preg_replace_callback('/[ ]?__HTML__PRESERVER__[ ]?/', function () use ($html) {
                 return array_shift($html);
             }, $text);
         }
@@ -569,7 +569,7 @@ class Virastar
         // bringing back front matter
         if ($options["preserve_front_matter"]) {
             $front_matter = $front_matter ?? [];
-            $text = preg_replace_callback('/[ ]?__FRONT__MATTER__PRESERVER__[ ]?/', function ($matched) use ($front_matter) {
+            $text = preg_replace_callback('/[ ]?__FRONT__MATTER__PRESERVER__[ ]?/', function () use ($front_matter) {
                 return array_shift($front_matter);
             }, $text);
         }
@@ -750,7 +750,7 @@ class Virastar
         // re-orders date parts with slash as delimiter
         return preg_replace_callback('#([0-9۰-۹]{1,2})([/-])([0-9۰-۹]{1,2})\2([0-9۰-۹]{4})#', function ($matched) {
             $day = $matched[1] ?? '';
-            $delimiter = $matched[2] ?? '';
+            // $delimiter = $matched[2] ?? '';
             $month = $matched[3] ?? '';
             $year = $matched[4] ?? '';
             return $year . '/' . $month . '/' . $day;
@@ -1011,7 +1011,8 @@ class Virastar
         $text = $this->fixThreeDots($text);
         $trimmed = trim($text);
 
-        for ($iStart = 0; $iStart < count($start); $iStart++) {
+        $countOfStart = count($start);
+        for ($iStart = 0; $iStart < $countOfStart; $iStart++) {
             $sElement = $start[$iStart];
             $sReg = '^\\' . $sElement . '/i';
             if (preg_match($sReg, $text)) {
@@ -1020,7 +1021,8 @@ class Virastar
             }
         }
 
-        for ($iEnd = 0; $iEnd < count($end); $iEnd++) {
+        $countOfEnd = count($end);
+        for ($iEnd = 0; $iEnd < $countOfEnd; $iEnd++) {
             $eElement = $end[$iEnd];
             $eReg = '\\' . $eElement . '$/i';
             if (preg_match($eReg, $text)) {
@@ -1029,11 +1031,13 @@ class Virastar
             }
         }
 
-        for ($iBefore = 0; $iBefore < count($before); $iBefore++) {
+        $countOfBefore = count($before);
+        for ($iBefore = 0; $iBefore < $countOfBefore; $iBefore++) {
             $text = $before[$iBefore] . ' ' . $text;
         }
 
-        for ($iAfter = 0; $iAfter < count($after); $iAfter++) {
+        $countOfAfter = count($after);
+        for ($iAfter = 0; $iAfter < $countOfAfter; $iAfter++) {
             $text += $after[$iAfter];
         }
 
