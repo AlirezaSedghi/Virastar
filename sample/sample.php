@@ -1,6 +1,8 @@
 <?php
 
-require_once 'Virastar.php';
+use Alirezasedghi\Virastar\Virastar;
+
+require_once '../src/Virastar.php';
 
 $start_time = microtime(true);
 
