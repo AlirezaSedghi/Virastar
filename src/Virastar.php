@@ -1,10 +1,6 @@
 <?php
 
-/*!
-* Virastar - v0.1.0
-* https://github.com/AlirezaSedghi/Virastar
-* Licensed: MIT
-*/
+namespace Alirezasedghi\Virastar;
 
 class Virastar
 {
