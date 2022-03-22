@@ -1,15 +1,21 @@
-# Virastar (ویراستار)
+<h1 align="center">
+    Virastar<br/>ویراستار
+</h1>
+<p align="center">
 Virastar is a Persian text cleaner.
+</p>
 
-This repository is PHP port of [brothersincode/virastar](https://github.com/brothersincode/virastar)
+<p align="center">
+  <a href="" rel="nofollow"><img alt="Required PHP Version" src="https://img.shields.io/badge/php-%5E7.0.0-blue?style=flat-square"></a>
+  <a href="https://packagist.org/packages/alirezasedghi/virastar" rel="nofollow"><img alt="Total Downloads" src="https://poser.pugx.org/alirezasedghi/virastar/downloads?style=flat-square"></a>
+  <a href="https://packagist.org/packages/alirezasedghi/virastar" rel="nofollow"><img alt="Latest Stable Version" src="https://poser.pugx.org/alirezasedghi/virastar/v/stable?style=flat-square"></a>
+  <a href="https://raw.githubusercontent.com/AlirezaSedghi/Virastar/master/LICENSE" rel="nofollow"><img alt="License" src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square"></a>
+  <a href="https://github.com/AlirezaSedghi/Virastar/issues" rel="nofollow"><img alt="GitHub issues" src="https://img.shields.io/github/issues/AlirezaSedghi/Virastar.svg?style=flat-square"></a>
+</p>
+
+> This repository is PHP port of [brothersincode/virastar](https://github.com/brothersincode/virastar)
 
 see live [demo](https://alirezasedghi.com/virastar)
-
-[![Required PHP Version](https://img.shields.io/badge/php-%5E7.0.0-blue?style=flat-square)]()
-[![Build Status](https://img.shields.io/github/checks-status/AlirezaSedghi/Virastar/master?style=flat-square)](https://travis-ci.org/AlirezaSedghi/Virastar)
-[![GitHub issues](https://img.shields.io/github/issues/AlirezaSedghi/Virastar.svg?style=flat-square)](https://github.com/AlirezaSedghi/Virastar/issues)
-[![Total Downloads](https://img.shields.io/github/downloads/AlirezaSedghi/Virastar/total?style=flat-square)](https://github.com/AlirezaSedghi/Virastar/releases)
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/AlirezaSedghi/Virastar/master/LICENSE)
 
 ## Install
 ```bash
@@ -25,7 +31,7 @@ require 'vendor/autoload.php';
 use Alirezasedghi\Virastar\Virastar;
 
 $virastar   = new Virastar();
-$text       = "فارسي را كمی درست تر می نويسيم"
+$text       = "فارسي را كمی درست تر می نويسيم";
 $cleaned    = $virastar->cleanup($text);
 
 echo $cleaned; // Outputs: "فارسی را کمی درست‌تر می‌نویسیم"
