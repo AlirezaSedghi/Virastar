@@ -2,6 +2,8 @@
 
 namespace Alirezasedghi\Virastar;
 
+use Exception;
+
 class Virastar
 {
     private $charsPersian = 'ءاآأإئؤبپتثجچحخدذرزژسشصضطظعغفقکگلمنوهیةيك';

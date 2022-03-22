@@ -1,11 +1,16 @@
 {
     "name": "alirezasedghi/virastar",
     "description": "Virastar is a Persian text cleaner.",
+    "keywords": ["Virastar", "Persian", "Text Cleaner", "ویراستار", "ویرایشگر", "فارسی"],
     "type": "library",
     "require": {
-        "php": "^7.0.|^8.0"
+        "php": ">=7.0.0"
     },
     "license": "MIT",
+    "support": {
+        "issues": "https://github.com/AlirezaSedghi/Virastar/issues",
+        "source": "https://github.com/AlirezaSedghi/Virastar"
+    },
     "autoload": {
         "psr-4": {
             "Alirezasedghi\\Virastar\\": "src/"
