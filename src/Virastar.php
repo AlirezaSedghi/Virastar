@@ -212,7 +212,7 @@ class Virastar
      * Cleanup Text
      *
      * @param $text
-     * @return array|string|string[]|null
+     * @return string
      * @throws Exception
      */
     public function cleanup($text)
@@ -1016,7 +1016,7 @@ class Virastar
             $sElement = $start[$iStart];
             $sReg = '^\\' . $sElement . '/i';
             if (preg_match($sReg, $text)) {
-                $text = preg_match($sReg, '', $trimmed);
+                $text = preg_replace($sReg, '', $trimmed);
                 $after[] = $sElement;
             }
         }
@@ -1026,7 +1026,7 @@ class Virastar
             $eElement = $end[$iEnd];
             $eReg = '\\' . $eElement . '$/i';
             if (preg_match($eReg, $text)) {
-                $text = preg_match($eReg, '', $trimmed);
+                $text = preg_replace($eReg, '', $trimmed);
                 $before[] = $eElement;
             }
         }
