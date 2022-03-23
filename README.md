@@ -1,8 +1,12 @@
 <h1 align="center">
+    <img src="https://github.alirezasedghi.com/virastar/assets/images/logo/favicon.png" alt="کتابخانه ویراستاری متن فارسی برای PHP" width="100px">
+    <br/>
     Virastar<br/>ویراستار
 </h1>
 <p align="center">
-Virastar is a Persian text cleaner.
+    Virastar is a Persian text cleaner.
+    <br/>
+    <span dir="rtl">کتابخانه ویراستاری متن فارسی برای PHP</span>
 </p>
 
 <p align="center">
