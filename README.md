@@ -15,7 +15,7 @@ Virastar is a Persian text cleaner.
 
 > This repository is PHP port of [brothersincode/virastar](https://github.com/brothersincode/virastar)
 
-see live [demo](https://alirezasedghi.com/virastar)
+Official website and [Persian usage guide](https://github.alirezasedghi.com/virastar/#documents)
 
 ## Install
 ```bash

@@ -203,7 +203,7 @@ class Virastar
     {
         return preg_replace_callback('/&(#?[^;\W]+;?)/', function ($matched) {
             $match = $matched[1] ?? '';
-            $html[] = $matched;
+            // $html[] = $matched;
             return ' __HTML__PRESERVER__ ';
         }, $text);
     }
