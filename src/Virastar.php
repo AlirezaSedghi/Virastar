@@ -978,9 +978,9 @@ class Virastar
         // except before/after preservers and before new-lines
         // .replace(/(?<![_]{2})([ ]{2,})(?![_]{2}|\n)/g, ' ') // WORKS: using lookbehind
         return preg_replace('/([^_])([ ]{2,})(?![_]{2}|\n)/u', '$1 ',
-            // cleans whitespace/zwnj between new-lines
+            // cleans tab/space/zwnj/zwj/nbsp between two new-lines(\n)
             // @REF: https://stackoverflow.com/a/10965543/
-            preg_replace('/\n[\s\x{200c}]*\n/u', "\n\n", $text)
+            preg_replace('/^\n([\t\x{0020}\x{200c}\x{200d}\x{00a0}]*)\n$/um', "\n\n", $text)
         );
     }
 
